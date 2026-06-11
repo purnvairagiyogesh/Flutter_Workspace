@@ -1,13 +1,13 @@
 import 'dart:io';
 
 void main() {
-  print("Enter Any Number : ");
-  var num = stdin.readLineSync().toString();
+  print("Enter Name or sentence : ");
+  var n = stdin.readLineSync().toString();
   String reverse = "";
 
-  for(int i = num.length-1; i>=0; i--)
+  for(int i = n.length-1; i>=0; i--)
   {
-    reverse+=num[i];
+    reverse+=n[i];
   }
 
   print(reverse);
