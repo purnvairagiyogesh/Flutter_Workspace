@@ -1,0 +1,24 @@
+Scaffold
+└── Center
+    └── Card
+        └── Column
+            ├── Image (Movie Poster)
+            ├── Text (Movie Title)
+            ├── Row
+            │   ├── Icon (Star)
+            │   └── Text (Movie Rating)
+            ├── Text (Movie Language & Genre)
+            └── ElevatedButton (Book Tickets)
+            
+-----------------------------------------------------------
+
+Scaffold – Provides the basic page structure.
+Center – Centers the movie ticket card on the screen.
+Card – Displays the movie information inside a card with rounded corners and elevation.
+Column – Arranges all the widgets vertically.
+Image – Shows the movie poster.
+Text – Displays the movie title.
+Row – Places the rating icon and rating text side by side.
+Icon – Displays a star icon for the movie rating.
+Text – Shows the movie's language and genre (e.g., "Hindi • Action/Drama").
+ElevatedButton – Allows the user to book tickets.
