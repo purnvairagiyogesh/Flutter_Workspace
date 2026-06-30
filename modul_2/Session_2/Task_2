@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+
+class MusicCard extends StatelessWidget {
+  const MusicCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return C      ard(
+      elevation: 5,
+      margin: const EdgeInsets.all(16),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: const [Icon(Icons.music_note,size: 50,color: Colors.green,),
+            SizedBox(height: 10),
+            Text("Blinding Lights", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            SizedBox(height: 5),
+            Text("The Weeknd",style: TextStyle(fontSize: 16,color: Colors.grey,),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
