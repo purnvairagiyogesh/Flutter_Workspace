@@ -1,0 +1,24 @@
+Feature: “Scheduled Story Posting”
+
+Description: Users should be able to create an Instagram Story and choose a future date and time for it to be posted automatically.
+             This feature will help creators, businesses, and students plan content in advance without needing to be online at the posting time.
+
+
+Team Members and Their Responsibilities:
+
+
+
+Designer:  Design the scheduling interface, date/time picker, and confirmation screens. 
+           Ensure the feature is easy to understand and visually consistent with Instagram’s existing design.
+
+
+Backend/API Developer: Create APIs to save scheduled stories, store posting times, and trigger automatic publishing at the correct time.
+                       Handle notifications and error cases.
+
+
+Mobile Developer: Implement the scheduling UI in the Instagram app, connect it with backend APIs, and display scheduled stories
+                  in the user’s drafts or scheduled section.
+
+
+Tester (QA) : Verify that stories are posted at the correct time, test different time zones, check network failure scenarios,
+              and ensure the feature works on various Android and iOS devices.
