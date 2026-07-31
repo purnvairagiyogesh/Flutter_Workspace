@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(home: IPLTeamsScreen(),));
-}
-
-
 class IPLTeamsScreen extends StatelessWidget {
   IPLTeamsScreen({super.key});
 
-  // List of IPL teams
   final List<String> teams = ["RCB","CSK","MI","SRH","GT","DC","RR","KKR"];
 
   @override
