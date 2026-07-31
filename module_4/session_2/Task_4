@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MaterialApp(home: FoodCategoriesScreen(), debugShowCheckedModeBanner: false,));
-}
-
 class FoodCategoriesScreen extends StatelessWidget {
   FoodCategoriesScreen({super.key});
 
