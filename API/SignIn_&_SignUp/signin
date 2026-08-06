@@ -2,10 +2,10 @@
 
     include('connection.php');
 
-    $email = $_REQUEST['e1'];
-    $pass = $_REQUEST['p1'];
+    $email = $_REQUEST['email'];
+    $pass = $_REQUEST['password'];
 
-    $sql = "select * from yogesh_signin where email = '$email' and password = '$pass'";
+    $sql = "select * from yogesh_signup where email = '$email' and password = '$pass'";
     $result = mysqli_query($con, $sql);
 
     $num = mysqli_num_rows($result);
