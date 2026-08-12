@@ -1,0 +1,2 @@
+I tested the app by saving some movies, closing and restarting the app, and checking the Saved Movies screen again. 
+The saved movies were still there, so the data persistence is working properly.
