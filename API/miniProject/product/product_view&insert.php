@@ -5,7 +5,7 @@
 
 
     $id = $_REQUEST['product_id'];
-    $fprice = $_REQUEST['final_discount_price'];
+    $fprice = $_REQUEST['final_discounted_price'];
     $order = $_REQUEST['order'];
 
 
