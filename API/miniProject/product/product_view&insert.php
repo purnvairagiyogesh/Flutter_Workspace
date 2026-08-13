@@ -39,7 +39,7 @@
         $data["product_name"] = $row["product_name"];
         $data["product_price"] = $row["product_price"];
         $data["product_image"] = $row["product_image"];
-        $data["final_discount_price"] = $row["final_discount_price"];
+        $data["final_discount_price"] = $row["final_discounted_price"];
         $data["features"] = $row["features"];
         $data["ratings"] = $row["ratings"]; 
         
