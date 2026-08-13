@@ -11,7 +11,7 @@
 
     if($id != "" && $fprice != "")
     {
-        $sql = "update products set final_discount_price = '$fprice' where product_id = '$id'";
+        $sql = "update products set final_discounted_price = '$fprice' where product_id = '$id'";
         mysqli_query($con, $sql);
     }
 
