@@ -10,7 +10,7 @@ $upload_path = 'images/';
 $server_ip = gethostbyname(gethostname());
 
 //creating the upload url
-$upload_url = 'https://'.$_SERVER['SERVER_NAME'] . "/API/" . $upload_path;
+$upload_url = 'https://'.$_SERVER['SERVER_NAME'] . "/Mini Projct API/" . $upload_path;
 
 
 //getting product details from the request
