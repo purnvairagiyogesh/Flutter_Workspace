@@ -1,0 +1,6 @@
+Status Code : 200 OK,
+
+Three fields returned in the response body
+1. id – Unique ID of the user
+2. name – Name of the user
+3. email – Email address of the user
