@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+
+class PlaylistProvider extends ChangeNotifier {
+  List<String> favoritePlaylists = [];
+
+  void addPlaylist(String playlist) {
+    favoritePlaylists.add(playlist);
+    notifyListeners();
+  }
+
+  void removePlaylist(String playlist) {
+    favoritePlaylists.remove(playlist);
+    notifyListeners();
+  }
+
+  bool isFavorite(String playlist) {
+    return favoritePlaylists.contains(playlist);
+  }
+}
