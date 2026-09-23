@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+
+class FeedbackScreen extends StatelessWidget {
+  FeedbackScreen({super.key});
+
+  var formKey = GlobalKey<FormState>();
+  var restaurant = TextEditingController();
+  var review = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Restaurant Feedback")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: restaurant,
+                decoration: InputDecoration(labelText: "Restaurant Name"),
+                validator: (value) => value!.isEmpty ? "Enter restaurant name" : null,
+              ),
+              TextFormField(
+                controller: review,
+                decoration: InputDecoration(labelText: "Your Review"),
+                validator: (value) => value!.isEmpty ? "Enter your review" : null,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Feedback submitted")),
+                    );
+                  }
+                },
+                child: Text("Submit"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
