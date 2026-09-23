@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class CartProvider extends ChangeNotifier {
+  List<String> products = [];
+
+  void addProduct(String product) {
+    products.add(product);
+    notifyListeners();
+  }
+
+  void removeProduct(String product) {
+    products.remove(product);
+    notifyListeners();
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
+
+  var products = ["iPhone", "Samsung", "OnePlus", "Google Pixel"];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Products")),
+      body: ListView.builder(
+        itemCount: products.length,
+        itemBuilder: (context, index) => ListTile(
+          title: Text(products[index]),
+          trailing: ElevatedButton(
+            onPressed: () => context.read<CartProvider>().addProduct(products[index]),
+            child: Text("Add"),
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen())),
+        child: Icon(Icons.shopping_cart),
+      ),
+    );
+  }
+}
+
+class CartScreen extends StatelessWidget {
+  CartScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var cart = context.watch<CartProvider>();
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Cart")),
+      body: ListView.builder(
+        itemCount: cart.products.length,
+        itemBuilder: (context, index) => ListTile(
+          title: Text(cart.products[index]),
+          trailing: IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: () => cart.removeProduct(cart.products[index]),
+          ),
+        ),
+      ),
+    );
+  }
+}
