@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+
+class LoginScreen extends StatefulWidget {
+  LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  var formKey = GlobalKey<FormState>();
+  var email = TextEditingController();
+  var password = TextEditingController();
+
+  @override
+  void dispose() {
+    email.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Music Login")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: email,
+                decoration: InputDecoration(labelText: "Email"),
+                validator: (value) {
+                  if (value == null || value.isEmpty) return "Enter email";
+                  if (!value.contains("@")) return "Enter a valid email";
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: password,
+                obscureText: true,
+                decoration: InputDecoration(labelText: "Password"),
+                validator: (value) {
+                  if (value == null || value.isEmpty) return "Enter password";
+                  if (value.length < 6) return "Password must be at least 6 characters";
+                  return null;
+                },
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Login successful")),
+                    );
+                  }
+                },
+                child: Text("Login"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
