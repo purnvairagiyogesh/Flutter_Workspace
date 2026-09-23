@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+
+class AppRoutes {
+  static String home = '/home';
+  static String playlist = '/playlist';
+  static String settings = '/settings';
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeScreen(),
+      routes: {
+        AppRoutes.home: (context) => HomeScreen(),
+        AppRoutes.playlist: (context) => PlaylistScreen(),
+        AppRoutes.settings: (context) => SettingsScreen(),
+      },
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home"),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.playlist);
+            },
+            child: Text("Playlist"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.settings);
+            },
+            child: Text("Settings"),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PlaylistScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Playlist"),
+      ),
+      body: Center(
+        child: Text("Playlist Screen"),
+      ),
+    );
+  }
+}
+
+class SettingsScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Settings"),
+      ),
+      body: Center(
+        child: Text("Settings Screen"),
+      ),
+    );
+  }
+}
