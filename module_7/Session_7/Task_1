@@ -1,0 +1,32 @@
+import 'package:flutter/material.dart';
+
+class UserScreen extends StatefulWidget {
+  UserScreen({super.key});
+
+  @override
+  State<UserScreen> createState() => _UserScreenState();
+}
+
+class _UserScreenState extends State<UserScreen> {
+  var username = TextEditingController();
+  var email = TextEditingController();
+  String result = "";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("User Details")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(controller: username, decoration: InputDecoration(labelText: "Username")),
+            TextField(controller: email, decoration: InputDecoration(labelText: "Email")),
+            ElevatedButton(onPressed: () => setState(() => result = "Username: ${username.text}\nEmail: ${email.text}"), child: Text("Show")),
+            Text(result),
+          ],
+        ),
+      ),
+    );
+  }
+}
