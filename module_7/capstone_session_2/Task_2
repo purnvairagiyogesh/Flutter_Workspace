@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+
+class RegisterScreen extends StatefulWidget {
+  RegisterScreen({super.key});
+
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  var username = TextEditingController();
+  var email = TextEditingController();
+  var phone = TextEditingController();
+  var password = TextEditingController();
+
+  String? usernameError;
+  String? emailError;
+  String? phoneError;
+  String? passwordError;
+
+  void validateForm() {
+    setState(() {
+      usernameError = username.text.isEmpty ? "Enter username" : null;
+      emailError = email.text.isEmpty ? "Enter email" : null;
+      phoneError = phone.text.length != 10 ? "Phone must be exactly 10 digits" : null;
+      passwordError = password.text.isEmpty ? "Enter password" : null;
+    });
+  }
+
+  @override
+  void dispose() {
+    username.dispose();
+    email.dispose();
+    phone.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Register")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(controller: username, decoration: InputDecoration(labelText: "Username", errorText: usernameError)),
+            TextField(controller: email, decoration: InputDecoration(labelText: "Email", errorText: emailError)),
+            TextField(controller: phone, keyboardType: TextInputType.phone, decoration: InputDecoration(labelText: "Phone", errorText: phoneError)),
+            TextField(controller: password, obscureText: true, decoration: InputDecoration(labelText: "Password", errorText: passwordError)),
+            SizedBox(height: 20),
+            ElevatedButton(onPressed: validateForm, child: Text("Register")),
+          ],
+        ),
+      ),
+    );
+  }
+}
