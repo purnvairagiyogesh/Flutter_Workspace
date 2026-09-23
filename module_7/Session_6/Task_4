@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+
+class RegistrationScreen extends StatelessWidget {
+  RegistrationScreen({super.key});
+
+  var formKey = GlobalKey<FormState>();
+  var name = TextEditingController();
+  var email = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Registration")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: name,
+                decoration: InputDecoration(labelText: "Name"),
+                validator: (value) => value!.isEmpty ? "Enter name" : null,
+              ),
+              TextFormField(
+                controller: email,
+                decoration: InputDecoration(labelText: "Email"),
+                validator: (value) =>
+                    value!.contains("@") ? null : "Enter valid email",
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Registration Successful!")),
+                    );
+                  }
+                },
+                child: Text("Register"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
