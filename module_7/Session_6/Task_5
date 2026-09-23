@@ -1,0 +1,59 @@
+import 'package:flutter/material.dart';
+
+class SignupScreen extends StatelessWidget {
+  SignupScreen({super.key});
+
+  var formKey = GlobalKey<FormState>();
+  var email = TextEditingController();
+  var password = TextEditingController();
+
+  String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) return "Enter email";
+    if (!value.contains("@")) return "Enter a valid email";
+    return null;
+  }
+
+  String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) return "Enter password";
+    if (value.length < 8) return "Password must be at least 8 characters";
+    return null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Sign Up")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: email,
+                decoration: InputDecoration(labelText: "Email"),
+                validator: validateEmail,
+              ),
+              TextFormField(
+                controller: password,
+                obscureText: true,
+                decoration: InputDecoration(labelText: "Password"),
+                validator: validatePassword,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Registration Successful!")),
+                    );
+                  }
+                },
+                child: Text("Sign Up"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
