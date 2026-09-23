@@ -1,0 +1,52 @@
+import 'package:flutter/material.dart';
+
+class LoginScreen extends StatefulWidget {
+  LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  var email = TextEditingController();
+  var password = TextEditingController();
+  var passwordFocus = FocusNode();
+
+  @override
+  void dispose() {
+    email.dispose();
+    password.dispose();
+    passwordFocus.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Login")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(
+              controller: email,
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(labelText: "Email"),
+              onSubmitted: (value) {
+                FocusScope.of(context).requestFocus(passwordFocus);
+              },
+            ),
+            TextField(
+              controller: password,
+              focusNode: passwordFocus,
+              obscureText: true,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(labelText: "Password"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
