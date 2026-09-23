@@ -1,0 +1,48 @@
+class CartScreen extends StatelessWidget {
+  const CartScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Cart Screen")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("Back to Main"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OffersScreen(),
+                  ),
+                );
+              },
+              child: Text("View Offers"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class OffersScreen extends StatelessWidget {
+  const OffersScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Offers Screen")),
+      body: Center(
+        child: Text("Special Offers"),
+      ),
+    );
+  }
+}
