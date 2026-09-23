@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+
+bool isLoggedIn = false;
+
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      initialRoute: '/splash',
+      routes: {
+        '/splash': (context) => SplashScreen(),
+        '/login': (context) => LoginScreen(),
+        '/dashboard': (context) => DashboardScreen(),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == '/splash') {
+          return MaterialPageRoute(
+            builder: (context) => SplashScreen(),
+          );
+        }
+
+        return null;
+      },
+    );
+  }
+}
+
+class SplashScreen extends StatelessWidget {
+  SplashScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.pushReplacementNamed(
+        context,
+        isLoggedIn ? '/dashboard' : '/login',
+      );
+    });
+
+    return Scaffold(
+      body: Center(child: Text("Splash Screen")),
+    );
+  }
+}
+
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            isLoggedIn = true;
+            Navigator.pushReplacementNamed(context, '/dashboard');
+          },
+          child: Text("Login"),
+        ),
+      ),
+    );
+  }
+}
+
+class DashboardScreen extends StatelessWidget {
+  DashboardScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(child: Text("Dashboard Screen")),
+    );
+  }
+}
