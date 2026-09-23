@@ -1,0 +1,74 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class AuthProvider extends ChangeNotifier {
+  bool isLoggedIn = false;
+
+  void login() {
+    isLoggedIn = true;
+    notifyListeners();
+  }
+
+  void logout() {
+    isLoggedIn = false;
+    notifyListeners();
+  }
+}
+
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => AuthProvider(),
+      child: Consumer<AuthProvider>(
+        builder: (context, auth, child) {
+          return MaterialApp(
+            home: auth.isLoggedIn ? DashboardScreen() : LoginScreen(),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Login")),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () => context.read<AuthProvider>().login(),
+          child: Text("Login"),
+        ),
+      ),
+    );
+  }
+}
+
+class DashboardScreen extends StatelessWidget {
+  DashboardScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Dashboard")),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("Welcome to Dashboard"),
+            ElevatedButton(
+              onPressed: () => context.read<AuthProvider>().logout(),
+              child: Text("Logout"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
