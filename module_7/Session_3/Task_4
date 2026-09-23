@@ -1,0 +1,21 @@
+import 'package:flutter/material.dart';
+
+class WeatherScreen extends StatelessWidget {
+  String? city;
+
+  WeatherScreen([this.city]);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Weather")),
+      body: Center(
+        child: Text(
+          city == null || city!.isEmpty
+              ? "No city selected"
+              : "Weather in $city",
+        ),
+      ),
+    );
+  }
+}
