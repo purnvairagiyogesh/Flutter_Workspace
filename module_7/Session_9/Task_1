@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class CounterProvider extends ChangeNotifier {
+  int count = 0;
+
+  void increment() {
+    count++;
+    notifyListeners();
+  }
+}
+
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => CounterProvider(),
+      child: MaterialApp(
+        home: CounterScreen(),
+      ),
+    );
+  }
+}
+
+class CounterScreen extends StatelessWidget {
+  CounterScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var counter = Provider.of<CounterProvider>(context);
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Provider Counter")),
+      body: Center(child: Text("${counter.count}")),
+      floatingActionButton: FloatingActionButton(
+        onPressed: counter.increment,
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
