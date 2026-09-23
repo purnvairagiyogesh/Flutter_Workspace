@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+
+class SignupScreen extends StatefulWidget {
+  SignupScreen({super.key});
+
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  var password = TextEditingController();
+  String? error;
+
+  var pattern = RegExp(r'^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$');
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Sign Up")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextFormField(
+              controller: password,
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Password",
+                errorText: error,
+              ),
+              onChanged: (value) {
+                setState(() {
+                  error = pattern.hasMatch(value)
+                      ? null
+                      : "Password must have 8+ characters, uppercase, number and special character";
+                });
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (pattern.hasMatch(password.text)) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Password is valid")),
+                  );
+                }
+              },
+              child: Text("Sign Up"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
