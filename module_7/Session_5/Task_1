@@ -1,0 +1,32 @@
+import 'package:flutter/material.dart';
+
+class RegistrationScreen extends StatelessWidget {
+  RegistrationScreen({super.key});
+
+  var name = TextEditingController();
+  var mobile = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Registration")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(controller: name, decoration: InputDecoration(labelText: "Name")),
+            TextField(controller: mobile, decoration: InputDecoration(labelText: "Mobile Number")),
+            ElevatedButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Name: ${name.text}, Mobile: ${mobile.text}")),
+                );
+              },
+              child: Text("Register"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
