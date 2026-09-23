@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+
+class LoginScreen extends StatefulWidget {
+  LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  var phoneFocus = FocusNode();
+  var otpFocus = FocusNode();
+  var referralFocus = FocusNode();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Login")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(
+              focusNode: phoneFocus,
+              keyboardType: TextInputType.phone,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(labelText: "Phone Number"),
+              onSubmitted: (_) => FocusScope.of(context).requestFocus(otpFocus),
+            ),
+            TextField(
+              focusNode: otpFocus,
+              keyboardType: TextInputType.number,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(labelText: "OTP"),
+              onSubmitted: (_) => FocusScope.of(context).requestFocus(referralFocus),
+            ),
+            TextField(
+              focusNode: referralFocus,
+              decoration: InputDecoration(labelText: "Referral Code"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
