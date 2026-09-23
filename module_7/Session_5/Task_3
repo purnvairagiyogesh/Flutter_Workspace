@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
+
+  var formKey = GlobalKey<FormState>();
+  var email = TextEditingController();
+  var password = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Flipkart Login")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: email,
+                decoration: InputDecoration(labelText: "Email"),
+                validator: (value) {
+                  if (value!.isEmpty) return "Enter email";
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: password,
+                obscureText: true,
+                decoration: InputDecoration(labelText: "Password"),
+                validator: (value) {
+                  if (value!.isEmpty) return "Enter password";
+                  if (value.length < 6) return "Password must be 6 characters";
+                  return null;
+                },
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Login successful")),
+                    );
+                  }
+                },
+                child: Text("Login"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
