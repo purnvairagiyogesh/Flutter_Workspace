@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+
+class SearchScreen extends StatefulWidget {
+  SearchScreen({super.key});
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  var search = TextEditingController();
+  var restaurants = ["Domino's Pizza", "Pizza Hut", "McDonald's", "Burger King", "Subway", "KFC"];
+  var filtered = <String>[];
+
+  @override
+  void initState() {
+    super.initState();
+    filtered = restaurants;
+  }
+
+  @override
+  void dispose() {
+    search.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Search Restaurants")),
+      body: Column(
+        children: [
+          TextField(controller: search, decoration: InputDecoration(labelText: "Search Restaurant"), onChanged: (value) {
+            setState(() => filtered = restaurants.where((name) => name.toLowerCase().contains(value.toLowerCase())).toList());
+          }),
+          Expanded(child: ListView.builder(
+              itemCount: filtered.length, 
+              itemBuilder: (context, index) => ListTile(title: Text(filtered[index]))),
+          ),
+        ],
+      ),
+    );
+  }
+}
