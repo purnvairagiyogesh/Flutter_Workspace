@@ -1,0 +1,8 @@
+MaterialApp(
+  home: HomeScreen(),
+  routes: {
+    '/home': (context) => HomeScreen(),
+    '/playlist': (context) => PlaylistScreen(),
+    '/settings': (context) => SettingsScreen(),
+  },
+)
