@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class ThemeProvider extends ChangeNotifier {
+  bool isDarkMode = false;
+
+  void toggleTheme() {
+    isDarkMode = !isDarkMode;
+    notifyListeners();
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = context.watch<ThemeProvider>();
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Home")),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: theme.toggleTheme,
+          child: Text(theme.isDarkMode ? "Light Mode" : "Dark Mode"),
+        ),
+      ),
+      bottomNavigationBar: TextButton(
+        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsScreen())),
+        child: Text("Settings"),
+      ),
+    );
+  }
+}
+
+class SettingsScreen extends StatelessWidget {
+  SettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = context.watch<ThemeProvider>();
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Settings")),
+      body: Center(
+        child: Switch(
+          value: theme.isDarkMode,
+          onChanged: (value) => theme.toggleTheme(),
+        ),
+      ),
+    );
+  }
+}
