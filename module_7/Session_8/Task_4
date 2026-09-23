@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+
+class ProfileScreen extends StatefulWidget {
+  ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  String name = "";
+  String email = "";
+
+  @override
+  void initState() {
+    super.initState();
+    var profile = {"name": "Yogesh", "email": "yogesh@gmail.com"};
+    name = profile["name"]!;
+    email = profile["email"]!;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Profile")),
+      body: Center(child: Text("Name: $name\nEmail: $email")),
+    );
+  }
+}
