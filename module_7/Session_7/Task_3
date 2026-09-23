@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+
+class PasswordScreen extends StatelessWidget {
+  PasswordScreen({super.key});
+
+  var password = TextEditingController();
+  var confirmPassword = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Password")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(controller: password, obscureText: true, decoration: InputDecoration(labelText: "Password")),
+            TextField(
+              controller: confirmPassword,
+              obscureText: true,
+              textInputAction: TextInputAction.done,
+              decoration: InputDecoration(labelText: "Confirm Password"),
+              onSubmitted: (_) {
+                FocusScope.of(context).unfocus();
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Passwords entered!")));
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
