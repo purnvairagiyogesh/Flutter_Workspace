@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+
+class SongDetailsScreen extends StatefulWidget {
+  SongDetailsScreen({super.key});
+
+  @override
+  State<SongDetailsScreen> createState() => _SongDetailsScreenState();
+}
+
+class _SongDetailsScreenState extends State<SongDetailsScreen> {
+  String title = "";
+  String artist = "";
+
+  @override
+  void initState() {
+    super.initState();
+    var song = {"title": "Perfect", "artist": "Ed Sheeran"};
+    title = song["title"]!;
+    artist = song["artist"]!;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Song Details")),
+      body: Center(child: Text("$title\n$artist")),
+    );
+  }
+}
