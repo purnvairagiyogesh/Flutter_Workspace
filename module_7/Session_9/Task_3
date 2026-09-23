@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class LoginProvider extends ChangeNotifier {
+  bool isLoggedIn = false;
+
+  void login() {
+    isLoggedIn = true;
+    notifyListeners();
+  }
+
+  void logout() {
+    isLoggedIn = false;
+    notifyListeners();
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var login = context.watch<LoginProvider>();
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Home")),
+      body: Center(
+        child: login.isLoggedIn
+            ? Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text("Welcome!"),
+                  ElevatedButton(
+                    onPressed: login.logout,
+                    child: Text("Logout"),
+                  ),
+                ],
+              )
+            : ElevatedButton(
+                onPressed: login.login,
+                child: Text("Login"),
+              ),
+      ),
+    );
+  }
+}
