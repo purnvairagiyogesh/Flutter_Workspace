@@ -1,0 +1,48 @@
+class MainScreen extends StatelessWidget {
+  MainScreen({super.key});
+
+  List products = ["iPhone 15", "Samsung Galaxy S24", "OnePlus 12"];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Products")),
+      body: ListView.builder(
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(products[index]),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ProductDetailScreen(products[index]),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class ProductDetailScreen extends StatelessWidget {
+  String productName;
+
+  ProductDetailScreen(this.productName, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Product Details")),
+      body: Center(
+        child: Text(
+          productName,
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+}
