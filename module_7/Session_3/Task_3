@@ -1,0 +1,60 @@
+import 'package:flutter/material.dart';
+
+class Product {
+  String name;
+  String price;
+
+  Product(this.name, this.price);
+}
+
+class ProductListScreen extends StatelessWidget {
+  var products = [
+    Product("iPhone 15", "₹70,000"),
+    Product("Samsung S24", "₹65,000"),
+    Product("OnePlus 12", "₹55,000"),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Products")),
+      body: ListView.builder(
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(products[index].name),
+            subtitle: Text(products[index].price),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ProductDetailScreen(products[index]),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class ProductDetailScreen extends StatelessWidget {
+  Product product;
+
+  ProductDetailScreen(this.product);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Product Details")),
+      body: Center(
+        child: Text(
+          "${product.name}\n${product.price}",
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
+}
