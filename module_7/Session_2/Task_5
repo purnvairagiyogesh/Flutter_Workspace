@@ -1,0 +1,84 @@
+import 'package:flutter/material.dart';
+
+class AppRoutes {
+  static String home = '/home';
+  static String playlist = '/playlist';
+  static String settings = '/settings';
+  static String favourites = '/favourites';
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: HomeScreen(),
+      routes: {
+        AppRoutes.home: (context) => HomeScreen(),
+        AppRoutes.playlist: (context) => PlaylistScreen(),
+        AppRoutes.settings: (context) => SettingsScreen(),
+        AppRoutes.favourites: (context) => FavouritesScreen(),
+      },
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Home")),
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.playlist);
+            },
+            child: Text("Playlist"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.settings);
+            },
+            child: Text("Settings"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.favourites);
+            },
+            child: Text("Favourites"),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PlaylistScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Playlist")),
+      body: Center(child: Text("Playlist Screen")),
+    );
+  }
+}
+
+class SettingsScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Settings")),
+      body: Center(child: Text("Settings Screen")),
+    );
+  }
+}
+
+class FavouritesScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Favourites")),
+      body: Center(child: Text("Favourites Screen")),
+    );
+  }
+}
