@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+
+class TrendingHashtagsScreen extends StatefulWidget {
+  TrendingHashtagsScreen({super.key});
+
+  @override
+  State<TrendingHashtagsScreen> createState() => _TrendingHashtagsScreenState();
+}
+
+class _TrendingHashtagsScreenState extends State<TrendingHashtagsScreen> {
+  List<String> hashtags = [];
+
+  @override
+  void initState() {
+    super.initState();
+    hashtags = ["#Flutter", "#Dart", "#Coding", "#Technology", "#Programming"];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Trending Hashtags")),
+      body: ListView.builder(
+        itemCount: hashtags.length,
+        itemBuilder: (context, index) => ListTile(title: Text(hashtags[index])),
+      ),
+    );
+  }
+}
