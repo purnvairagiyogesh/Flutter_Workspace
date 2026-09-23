@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+
+class SignupScreen extends StatefulWidget {
+  SignupScreen({super.key});
+
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  String? emailError;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Sign Up")),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "Email",
+                errorText: emailError,
+              ),
+              onChanged: (value) {
+                setState(() {
+                  if (!value.contains("@")) {
+                    emailError = "Enter a valid email";
+                  } else {
+                    emailError = null;
+                  }
+                });
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
