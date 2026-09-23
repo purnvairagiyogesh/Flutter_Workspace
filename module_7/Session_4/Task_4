@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+
+class ProfileScreen extends StatefulWidget {
+  ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  String bio = "Flutter Developer";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Profile")),
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(height: 30),
+            CircleAvatar(radius: 50, child: Icon(Icons.person)),
+            SizedBox(height: 15),
+            Text(bio),
+            ElevatedButton(
+              onPressed: () async {
+                var result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EditBioScreen(bio)),
+                );
+                if (result != null) setState(() => bio = result);
+              },
+              child: Text("Edit Bio"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class EditBioScreen extends StatelessWidget {
+  String bio;
+  EditBioScreen(this.bio, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var controller = TextEditingController(text: bio);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Edit Bio"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, controller.text),
+            child: Text("Save"),
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: TextField(
+          controller: controller,
+          decoration: InputDecoration(labelText: "Bio"),
+        ),
+      ),
+    );
+  }
+}
