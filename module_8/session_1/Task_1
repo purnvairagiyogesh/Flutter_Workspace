@@ -1,0 +1,77 @@
+the problem is -> This happens because each StatefulWidget owns its own count variable. Calling setState() rebuilds the corresponding 
+                  widget's state, not the other widget's state.
+
+solution is -> keep a single count variable in the parent widget and pass its value and increment function to the second widget.
+
+
+import 'package:flutter/material.dart';
+
+class maincounter extends StatefulWidget {
+  const maincounter({super.key});
+
+  @override
+  State<maincounter> createState() => _maincounterState();
+}
+
+class _maincounterState extends State<maincounter> {
+  var count = 0;
+
+  void increament() {
+    setState(() {
+      count++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Double counter check")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("Main Counter : $count"),
+            const SizedBox(height: 10),
+            ElevatedButton(onPressed: increament, child: const Text("Increment")),
+            const SizedBox(height: 20),
+            const secondCounter(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class secondCounter extends StatefulWidget {
+  const secondCounter({super.key});
+
+  @override
+  State<secondCounter> createState() => _secondCounterState();
+}
+
+class _secondCounterState extends State<secondCounter> {
+  int count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text("Second Counter : $count"),
+        const SizedBox(height: 10),
+        ElevatedButton(
+          onPressed: () {
+            setState(() {
+              count++;
+            });
+          },
+          child: const Text("Increment"),
+        ),
+      ],
+    );
+  }
+}
+
+
