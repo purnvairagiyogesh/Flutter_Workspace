@@ -1,0 +1,7 @@
+1. Data inconsistency between widgets
+If multiple widgets use their own setState() to manage the user's playlist, one widget might show an updated playlist while another still displays old data.
+This happens because each widget manages its own state independently.
+
+2. Difficult maintenance and debugging
+As the app grows, multiple widgets may contain duplicate playlist logic, such as adding or removing songs. This makes bugs harder to find and fix because a 
+change in one widget may not be reflected in others.
