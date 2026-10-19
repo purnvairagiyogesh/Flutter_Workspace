@@ -1,0 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:last_assignment/session_1/session_Task_3.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+void main() {
+  runApp(
+      ChangeNotifierProvider(
+        create: (context) => profileprovider(),
+          child:MaterialApp(home: profileScreen(),))
+  );
+}
