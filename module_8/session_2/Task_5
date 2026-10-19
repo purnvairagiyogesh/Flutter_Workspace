@@ -1,0 +1,50 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class ThemeCubit extends Cubit<bool> {
+  ThemeCubit() : super(false);
+
+  void toggleTheme(bool isDark) {
+    emit(isDark);
+  }
+}
+
+class ThemeApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ThemeCubit, bool>(
+      builder: (context, isDark) {
+        return MaterialApp(
+          theme: ThemeData(
+            brightness: isDark ? Brightness.dark : Brightness.light,
+          ),
+          home: Scaffold(
+            appBar: AppBar(title: Text("Theme Switch")),
+            body: Container(
+              color: isDark ? Colors.black : Colors.white,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      isDark ? "Dark Mode" : "Light Mode",
+                      style: TextStyle(
+                        color: isDark ? Colors.white : Colors.black,
+                      ),
+                    ),
+                    Switch(
+                      value: isDark,
+                      onChanged: (value) {
+                        context.read<ThemeCubit>().toggleTheme(value);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
