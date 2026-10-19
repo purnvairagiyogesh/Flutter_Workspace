@@ -1,0 +1,55 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class profileprovider extends ChangeNotifier
+{
+  String name = "yogesh";
+  String email = "yogeshpurnvairagi.com";
+
+  void profileupdate(String updatename, String updateemail)
+  {
+      this.name = updatename;
+      this.email= updateemail;
+      notifyListeners();
+  }
+}
+
+class profileScreen extends StatelessWidget {
+
+  var count = 0;
+
+  var name = ["yogesh", "yogi", "sneh", "putho", "krish", "devang", "harsh", "maldev", "nayan", "bhavik", "savan", "tushar"];
+  var email = ["yogesh@gmail.com", "yogi@gmail.com", "sneh@gmail.com", "putho@gmail.com", "krish@gmail.com", "devang@gmail.com", "harsh@gmail.com", "maldev@gmail.com", "nayan@gmail.com", "bhavik@gmail.com", "savan@gmail.com", "tushar@gmail.com"];
+
+  @override
+  Widget build(BuildContext context) {
+
+    var profile = context.watch<profileprovider>();
+    return Scaffold
+    (
+      appBar: AppBar(title: Text("Profile Screen"),),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children:
+          [
+            Text("Name : ${profile.name}"),
+            Text("Email : ${profile.email}"),
+            SizedBox(height: 20,),
+            ElevatedButton(onPressed: (){
+              if(count <= name.length){
+                count++;
+                context.read<profileprovider>().profileupdate(name[count], email[count]);
+              }
+              else
+                {
+                  count = 0;
+                }
+            }, child: Text("Update Profile")),
+          ]
+        )
+      ),
+    );
+  }
+}
